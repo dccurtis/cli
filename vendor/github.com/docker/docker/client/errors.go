@@ -36,8 +36,8 @@ type notFound interface {
 	NotFound() bool // Is the error a NotFound error
 }
 
-// IsErrNotFound returns true if the error is a NotFound error, which is returned
-// by the API when some object is not found.
+// IsErrNotFound returns true if the error is caused with an
+// object (image, container, network, volume, …) is not found in the docker host.
 func IsErrNotFound(err error) bool {
 	te, ok := err.(notFound)
 	return ok && te.NotFound()
@@ -60,8 +60,6 @@ func (e imageNotFoundError) Error() string {
 
 // IsErrImageNotFound returns true if the error is caused
 // when an image is not found in the docker host.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrImageNotFound(err error) bool {
 	return IsErrNotFound(err)
 }
@@ -83,8 +81,6 @@ func (e containerNotFoundError) Error() string {
 
 // IsErrContainerNotFound returns true if the error is caused
 // when a container is not found in the docker host.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrContainerNotFound(err error) bool {
 	return IsErrNotFound(err)
 }
@@ -106,8 +102,6 @@ func (e networkNotFoundError) Error() string {
 
 // IsErrNetworkNotFound returns true if the error is caused
 // when a network is not found in the docker host.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrNetworkNotFound(err error) bool {
 	return IsErrNotFound(err)
 }
@@ -129,8 +123,6 @@ func (e volumeNotFoundError) Error() string {
 
 // IsErrVolumeNotFound returns true if the error is caused
 // when a volume is not found in the docker host.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrVolumeNotFound(err error) bool {
 	return IsErrNotFound(err)
 }
@@ -169,8 +161,6 @@ func (e nodeNotFoundError) NotFound() bool {
 
 // IsErrNodeNotFound returns true if the error is caused
 // when a node is not found.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrNodeNotFound(err error) bool {
 	_, ok := err.(nodeNotFoundError)
 	return ok
@@ -193,8 +183,6 @@ func (e serviceNotFoundError) NotFound() bool {
 
 // IsErrServiceNotFound returns true if the error is caused
 // when a service is not found.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrServiceNotFound(err error) bool {
 	_, ok := err.(serviceNotFoundError)
 	return ok
@@ -217,8 +205,6 @@ func (e taskNotFoundError) NotFound() bool {
 
 // IsErrTaskNotFound returns true if the error is caused
 // when a task is not found.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrTaskNotFound(err error) bool {
 	_, ok := err.(taskNotFoundError)
 	return ok
@@ -265,8 +251,6 @@ func (e secretNotFoundError) NotFound() bool {
 
 // IsErrSecretNotFound returns true if the error is caused
 // when a secret is not found.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrSecretNotFound(err error) bool {
 	_, ok := err.(secretNotFoundError)
 	return ok
@@ -289,8 +273,6 @@ func (e configNotFoundError) NotFound() bool {
 
 // IsErrConfigNotFound returns true if the error is caused
 // when a config is not found.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrConfigNotFound(err error) bool {
 	_, ok := err.(configNotFoundError)
 	return ok
@@ -313,8 +295,6 @@ func (e pluginNotFoundError) Error() string {
 
 // IsErrPluginNotFound returns true if the error is caused
 // when a plugin is not found in the docker host.
-//
-// Deprecated: Use IsErrNotFound
 func IsErrPluginNotFound(err error) bool {
 	return IsErrNotFound(err)
 }
